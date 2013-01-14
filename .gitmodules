@@ -3,22 +3,22 @@
 	url = https://github.com/cloudfoundry/vcap-services.git
 [submodule "uaa"]
 	path = uaa
-	url = https://github.com/cloudfoundry/uaa.git
+	url = https://github.com/limengyun2008/uaa.git
 [submodule "acm"]
 	path = acm
-	url = https://github.com/cloudfoundry/acm.git
+	url = https://github.com/limengyun2008/acm.git
 [submodule "cloud_controller"]
 	path = cloud_controller
-	url = https://github.com/cloudfoundry/cloud_controller.git
+	url = https://github.com/limengyun2008/cloud_controller.git
 [submodule "router"]
 	path = router
-	url = https://github.com/cloudfoundry/router.git
+	url = https://github.com/limengyun2008/router.git
 [submodule "dea"]
 	path = dea
-	url = https://github.com/cloudfoundry/dea.git
+	url = https://github.com/limengyun2008/dea.git
 [submodule "stager"]
 	path = stager
-	url = https://github.com/cloudfoundry/stager.git
+	url = https://github.com/limengyun2008/stager.git
 [submodule "tests"]
 	path = tests
 	url = https://github.com/cloudfoundry/vcap-yeti.git
