@@ -96,7 +96,7 @@ if [ -z "$VCAP_REPO_BASE" ]; then
 fi
 
 if [ -z "$VCAP_REPO_BRANCH" ]; then
-  VCAP_REPO_BRANCH=master
+  VCAP_REPO_BRANCH=yae
 fi
 
 # Check if we have access to the web
