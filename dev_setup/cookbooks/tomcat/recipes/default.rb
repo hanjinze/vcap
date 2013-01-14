@@ -1,11 +1,6 @@
 
 include_recipe "java"
 
-case node.platform
-when "redhat", "centos", "fedora"
-  include_recipe "jpackage"
-end
-
 tomcat_tarball_path = File.join(node[:deployment][:setup_cache], "apache-tomcat-#{node[:tomcat][:version]}.tar.gz")
 cf_remote_file tomcat_tarball_path do
   owner node[:deployment][:user]

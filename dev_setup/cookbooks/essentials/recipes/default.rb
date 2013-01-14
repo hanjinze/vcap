@@ -5,7 +5,8 @@
 # Copyright 2011, VMWARE
 #
 #
-
+case node.platform
+when "ubuntu"
 %w{apt-utils build-essential libssl-dev
    libxml2 libxml2-dev libxslt1.1 libxslt1-dev git-core sqlite3 libsqlite3-ruby
    libsqlite3-dev unzip zip ruby-dev libmysql-ruby libmysqlclient-dev libcurl4-openssl-dev}.each do |p|
@@ -40,6 +41,25 @@ bash "Install libpq-dev" do
   dpkg -i #{libpq_dev_deb_path}
   EOH
 end
+
+if node[:deployment][:profile]
+  file node[:deployment][:profile] do
+    owner node[:deployment][:user]
+    group node[:deployment][:group]
+    content "export PATH=#{node[:ruby][:path]}/bin:`#{node[:ruby][:path]}/bin/gem env gempath`/bin:$PATH"
+  end
+end
+
+when "centos"
+  %w{gcc gcc-c++ kernel-devel  openssl-devel libxml2 libxml2-devel libxslt libxslt-devel sqlite sqlite-devel mysql-devel 
+    postgresql postgresql-devel  
+   }.each do |p|
+    package p do
+      action [:install]
+    end
+  end
+end
+
 
 if node[:deployment][:profile]
   file node[:deployment][:profile] do

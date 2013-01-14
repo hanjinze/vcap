@@ -35,6 +35,27 @@ when "ubuntu"
     supports :status => true, :restart => true, :reload => true
     action [ :enable, :start ]
   end
+when "centos"
+  template "nats_server" do
+    path File.join("", "etc", "init.d", "nats_server")
+    source "nats_server.erb"
+    owner node[:deployment][:user]
+    mode 0755
+    notifies :restart, "service[nats_server]"
+  end
+
+  template "vars_for_centos" do
+    path File.join("","lib", "init", "vars.sh")
+    source "vars_for_centos.erb"
+    owner node[:deployment][:user]
+    mode 0755
+  end
+
+  service "nats_server" do
+    supports :status => true, :restart => true, :reload => true
+    action [ :enable, :start ]
+  end
+
 else
   Chef::Log.error("Installation of nats_server not supported on this platform.")
 end

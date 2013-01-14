@@ -1,0 +1,11 @@
+[ -f /etc/default/rcS ] && . /etc/default/rcS || true
+if [ -r /proc/cmdline ] && grep -qw 'noswap' /proc/cmdline ; then
+    NOSWAP=yes
+else
+    NOSWAP=no
+fi
+if [ ! -e /proc/cmdline ] || egrep -qw 'quiet' /proc/cmdline ; then
+    VERBOSE="no"
+fi
+
+[ "$INIT_VERBOSE" ] && VERBOSE="$INIT_VERBOSE" || true

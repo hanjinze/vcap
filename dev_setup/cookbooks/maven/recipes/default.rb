@@ -19,11 +19,6 @@
 
 include_recipe "java"
 
-case node.platform
-when "redhat", "centos", "fedora"
-  include_recipe "jpackage"
-end
-
 maven_tarball_path = File.join(node[:deployment][:setup_cache], "apache-maven-#{node[:maven][:version]}.tar.gz")
 cf_remote_file  maven_tarball_path do
   owner node[:deployment][:user]

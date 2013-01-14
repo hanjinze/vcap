@@ -1,10 +1,15 @@
 module RubyInstall
   def cf_ruby_install(ruby_version, ruby_source_id, ruby_path, ruby_tarball_suffix)
-
-    %w[ build-essential libssl-dev zlib1g-dev libreadline6-dev libxml2-dev].each do |pkg|
-      package pkg
+    case node.platform
+    when "ubuntu"
+      %w[ build-essential libssl-dev zlib1g-dev libreadline6-dev libxml2-dev].each do |pkg|
+        package pkg
+      end
+    when "centos"
+      %w[ gcc gcc-c++ kernel-devel  openssl-devel zlib-devel readline-devel libxml2-devel].each do |pkg|  
+        package pkg
+      end
     end
-
     ruby_tarball_path = File.join(node[:deployment][:setup_cache], "ruby-#{ruby_version}.tar.#{ruby_tarball_suffix}")
     cf_remote_file ruby_tarball_path do
       owner node[:deployment][:user]

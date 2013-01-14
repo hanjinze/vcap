@@ -5,28 +5,15 @@
 # Copyright 2011, VMWARE
 #
 #
-%w{lsof psmisc librmagick-ruby}.each do |pkg|
-  package pkg
-end
 
-node[:dea][:runtimes].each do |runtime|
-  case runtime
-  when "ruby19"
-    include_recipe "ruby"
-  when "ruby18"
-    include_recipe "ruby::ruby18"
-  when "ruby193"
-    include_recipe "ruby::ruby193"
-  when "node06"
-    include_recipe "node::node06"
-  when "node08"
-    include_recipe "node::node08"
-  when "node", "node04"
-    include_recipe "node::node04"
-  when "python2"
-    include_recipe "python"
-  else
-    include_recipe "#{runtime}"
+case node['platform']
+when "ubuntu"
+  %w{lsof psmisc librmagick-ruby}.each do |pkg|
+    package pkg
+  end
+when "centos"
+  %w{lsof psmisc}.each do |pkg|
+    package pkg
   end
 end
 
