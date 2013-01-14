@@ -113,7 +113,7 @@ if ! wget -q -T 2 -t 2 -O - http://api.cloudfoundry.com/info | grep "Cloud Appli
 fi
 
 # Install chef
-readonly PREREQUISITES=(ruby ruby-dev libopenssl-ruby rdoc ri irb build-essential ssl-cert)
+readonly PREREQUISITES=(ruby ruby-devel ruby-lib ruby-rdoc ruby-ri ruby-irb gcc gcc-c++ kernel-devel openssl)
 echo "Installing prerequisites..."
 run_cmd yum install "${PREREQUISITES[@]}"
 
