@@ -44,11 +44,35 @@ when "centos"
     notifies :restart, "service[nats_server]"
   end
 
+  vars_for_centos_dir = File.join("","lib","init")
+  directory vars_for_centos_dir do
+    owner node[:deployment][:user]
+    mode "0755"
+    recursive true
+    action :create 
+  end
+
+  initlsb = File.join("","lib","lsb")
+  directory initlsb do
+    owner node[:deployment][:user]
+    mode "0755"
+    recursive true
+    action :create 
+  end
+  
+
+  template "/lib/lsb/init-functions" do
+    source "init-functions.erb"
+    mode 0755
+    owner node[:deployment][:user]
+    action :create
+  end
   template "vars_for_centos" do
     path File.join("","lib", "init", "vars.sh")
     source "vars_for_centos.erb"
     owner node[:deployment][:user]
     mode 0755
+    action :create
   end
 
   service "nats_server" do

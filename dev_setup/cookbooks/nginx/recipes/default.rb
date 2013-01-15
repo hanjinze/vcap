@@ -479,6 +479,17 @@ when "centos"
       [ ! -z "$pid" ] && sudo kill $pid || true
     EOH
   end
+  
+  bash "Install Start-Stop-Daemon shell command for centos" do
+    cwd "/tmp"
+    code <<-EOF
+      wget "http://developer.axis.com/download/distribution/apps-sys-utils-start-stop-daemon-IR1_9_18-2.tar.gz"
+      tar zxf apps-sys-utils-start-stop-daemon-IR1_9_18-2.tar.gz
+      cd apps/sys-utils/start-stop-daemon-IR1_9_18-2/
+      cc start-stop-daemon.c -o start-stop-daemon      
+      cp start-stop-daemon /sbin/start-stop-daemon
+    EOF
+  end
 
   service "nginx_router" do
     supports :status => true, :restart => true, :reload => true

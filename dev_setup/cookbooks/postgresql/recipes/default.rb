@@ -50,7 +50,7 @@ when "ubuntu"
     EOH
   end
 when "centos"
-  puts "^^^^^^^^^^^PENDING^^^^^^^"
+  package  "postgresql-server"
 else
   Chef::Log.error("Installation of PostgreSQL is not supported on this platform.")
 end

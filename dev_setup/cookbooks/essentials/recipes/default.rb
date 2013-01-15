@@ -52,7 +52,7 @@ end
 
 when "centos"
   %w{gcc gcc-c++ kernel-devel  openssl-devel libxml2 libxml2-devel libxslt libxslt-devel sqlite sqlite-devel mysql-devel 
-    postgresql postgresql-devel  
+    postgresql postgresql-devel patch
    }.each do |p|
     package p do
       action [:install]
