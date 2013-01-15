@@ -49,7 +49,8 @@ when "ubuntu"
     dpkg -i #{server_common_path}
     EOH
   end
-
+when "centos"
+  puts "^^^^^^^^^^^PENDING^^^^^^^"
 else
   Chef::Log.error("Installation of PostgreSQL is not supported on this platform.")
 end

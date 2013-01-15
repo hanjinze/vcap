@@ -2,19 +2,19 @@ include_attribute "backup"
 include_attribute "service_lifecycle"
 
 default[:postgresql][:supported_versions] = {
-        "9.0" => "9.0",
+        "8.4" => "8.4",
 }
 default[:postgresql][:version_aliases] = {
-        "current" => "9.0",
+        "current" => "8.4",
 }
-default[:postgresql][:default_version] = "9.0"
+default[:postgresql][:default_version] = "8.4"
 
 default[:postgresql][:server_root_password] = "changeme"
 default[:postgresql][:server_root_user] = "root"
 default[:postgresql][:system_port] = "5432"
-default[:postgresql][:service_port] = "5433"
+default[:postgresql][:service_port] = "5432"
 default[:postgresql][:system_version] = "8.4"
-default[:postgresql][:service_version] = "9.0"
+default[:postgresql][:service_version] = "8.4"
 
 default[:postgresql_gateway][:service][:timeout] = "15"
 default[:postgresql_gateway][:node_timeout] = "10"
