@@ -89,6 +89,7 @@ module CloudFoundryPostgres
     when "centos"
       ruby_block "Update PostgreSQL config" do
         block do
+          initdb = `service postgresql initdb`
           # update postgresql.conf
           postgresql_conf_file = File.join("", "var", "lib", "pgsql", "data", "postgresql.conf")
           Chef::Log.error("Installation of PostgreSQL #{postgresql_pkg} failed, could not find config file #{postgresql_conf_file}") && (exit 1) unless File.exist?(postgresql_conf_file)
