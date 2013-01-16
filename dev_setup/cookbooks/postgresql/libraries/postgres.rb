@@ -94,19 +94,19 @@ module CloudFoundryPostgres
           postgresql_conf_file = File.join("", "var", "lib", "pgsql", "data", "postgresql.conf")
           Chef::Log.error("Installation of PostgreSQL #{postgresql_pkg} failed, could not find config file #{postgresql_conf_file}") && (exit 1) unless File.exist?(postgresql_conf_file)
 
-          `grep "^\s*listen_addresses" #{postgresql_conf_file}`
-          if $?.exitstatus != 0
+        #  `grep "^\s*listen_addresses" #{postgresql_conf_file}`
+        #  if $?.exitstatus != 0
             `echo "listen_addresses='#{node[:postgresql][:host]},localhost'" >> #{postgresql_conf_file}`
-          else
-            `sed -i.bkup -e "s/^\s*listen_addresses.*$/listen_addresses='#{node[:postgresql][:host]},localhost'/" #{postgresql_conf_file}`
-          end
+       #   else
+       #     `sed -i.bkup -e "s/^\s*listen_addresses.*$/listen_addresses='#{node[:postgresql][:host]},localhost'/" #{postgresql_conf_file}`
+       #   end
 
-          `grep "^\s*port\s*=\s*\d*" #{postgresql_conf_file}`
-          if $?.exitstatus != 0
+        #  `grep "^\s*port\s*=\s*\d*" #{postgresql_conf_file}`
+        #  if $?.exitstatus != 0
             `echo "port = #{pg_port}" >> #{postgresql_conf_file}`
-          else
+       #   else
             `sed -i.bkup -e "s/^\s*port\s*=\s*.*/port = #{pg_port}/" #{postgresql_conf_file}`
-          end
+        #  end
 
           # restart postgrsql
           init_file = File.join("", "etc", "init.d", "postgresql-#{pg_major_version}")

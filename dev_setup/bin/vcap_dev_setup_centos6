@@ -107,10 +107,10 @@ if ! run_cmd yum install wget; then
 fi
 
 echo "Checking web connectivity."
-if ! wget -q -T 2 -t 2 -O - http://api.cloudfoundry.com/info | grep "Cloud Application Platform" > /dev/null; then
-  echo "Giving up. Cannot connect to the web. Check your proxy settings if you are behind a proxy."
-  exit 1
-fi
+#if ! wget -q -T 2 -t 2 -O - http://api.cloudfoundry.com/info | grep "Cloud Application Platform" > /dev/null; then
+#  echo "Giving up. Cannot connect to the web. Check your proxy settings if you are behind a proxy."
+#  exit 1
+#fi
 
 # Install chef
 readonly PREREQUISITES=(ruby ruby-devel ruby-lib ruby-rdoc ruby-ri ruby-irb gcc gcc-c++ kernel-devel openssl)
