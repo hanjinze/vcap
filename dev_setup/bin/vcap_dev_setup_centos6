@@ -113,7 +113,7 @@ echo "Checking web connectivity."
 #fi
 
 # Install chef
-readonly PREREQUISITES=(ruby ruby-devel ruby-lib ruby-rdoc ruby-ri ruby-irb gcc gcc-c++ kernel-devel openssl)
+readonly PREREQUISITES=(ruby ruby-devel ruby-lib ruby-rdoc ruby-ri ruby-irb gcc gcc-c++ kernel-devel openssl make)
 echo "Installing prerequisites..."
 run_cmd yum install "${PREREQUISITES[@]}"
 
