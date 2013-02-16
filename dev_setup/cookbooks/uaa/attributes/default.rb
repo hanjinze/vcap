@@ -1,5 +1,5 @@
 include_attributes "uaadb"
-default[:uaadb][:host] = "localhost"
+default[:uaadb][:host] ||= cf_local_ip
 
 default[:uaa][:jwt_secret] = "uaa_jwt_secret"
 
