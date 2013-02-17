@@ -69,5 +69,6 @@ when "ubuntu"
     group "root"
     mode "0600"
   end
-
+when "centos"
+  Chef::Log.info("php has already install on centos 6.")
 end
