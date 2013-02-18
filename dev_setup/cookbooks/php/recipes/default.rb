@@ -70,5 +70,17 @@ when "ubuntu"
     mode "0600"
   end
 when "centos"
+
+  %w[ php httpd].each do |pkg|
+    package pkg
+  end
+
+  bash "link shell script" do
+    code <<-EOH
+      sudo ln -s /etc/init.d/httpd  /usr/sbin/apache2
+      sudo adduser www-data
+    EOH
+  end
+  
   Chef::Log.info("php has already install on centos 6.")
 end

@@ -6,7 +6,8 @@
 #
 #
 
-
+node[:uaadb][:host] ||= cf_local_ip
+  
 cf_pg_reset_user_password(:uaadb)
 cf_pg_reset_user_password(:ccdb)
 
