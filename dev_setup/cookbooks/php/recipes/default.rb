@@ -71,13 +71,16 @@ when "ubuntu"
   end
 when "centos"
 
-  %w[ php httpd].each do |pkg|
+  %w[httpd php mysql mysql-server php-mysql httpd-manual mod_ssl mod_perl mod_auth_mysql 
+      php-mcrypt php-gd php-xml php-mbstring php-ldap php-pear php-xmlrpc 
+      mysql-connector-odbc mysql-devel libdbi-dbd-mysql].each do |pkg|
     package pkg
   end
 
   bash "link shell script" do
     code <<-EOH
-      sudo ln -s /etc/init.d/httpd  /usr/sbin/apache2
+      sudo ln -s /usr/sbin/httpd /usr/sbin/apache2
+      sudo ln -s /usr/lib64/httpd/modules /usr/lib/apache2/modules
       sudo adduser www-data
     EOH
   end
